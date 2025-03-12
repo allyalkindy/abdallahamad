@@ -57,7 +57,7 @@ function Treatments() {
       const token = localStorage.getItem('token');
      
 
-      const response = await axios.get(`http://localhost:5000/api/doctor/${doctorId}`, {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/doctor/${doctorId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -81,7 +81,7 @@ function Treatments() {
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/treatments', {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/treatments`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -137,7 +137,7 @@ function Treatments() {
     if (window.confirm('Are you sure you want to delete this treatment?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/treatment/${treatmentId}`, {
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/treatment/${treatmentId}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setTreatments(treatments.filter(treatment => treatment._id !== treatmentId));

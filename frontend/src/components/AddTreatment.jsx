@@ -19,7 +19,7 @@ function AddTreatment({ isOpen, onClose, onSuccess }) {
   const fetchDoctors = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/doctors', {
+      const response = await axios.get(`${process.env.VITE_BACKEND_URL}/api/doctors`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setDoctors(response.data.data);
@@ -32,7 +32,7 @@ function AddTreatment({ isOpen, onClose, onSuccess }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/treatments', formData, {
+      await axios.post(`${process.env.VITE_BACKEND_URL}/api/treatments`, formData, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       onSuccess();

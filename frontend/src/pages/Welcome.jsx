@@ -28,7 +28,7 @@ function Welcome() {
         const doctorId = decodedToken._id;
         
 
-        const response = await axios.get(`http://localhost:5000/api/doctor/${doctorId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/doctor/${doctorId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -65,7 +65,7 @@ function Welcome() {
       formData.append('image', file);
       
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5000/api/doctor/upload-image', formData, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/doctor/upload-image`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
@@ -112,7 +112,7 @@ function Welcome() {
                 <div className="w-32 h-32 rounded-full bg-gray-700 border-4 border-gray-800 overflow-hidden">
                   {doctor?.imageUrl && !showFallback ? (
                     <img 
-                      src={ `http://localhost:5000/public/${doctor.imageUrl}`}
+                      src={ `${import.meta.env.VITE_BACKEND_URL}/public/${doctor.imageUrl}`}
                       alt={doctor.fullName}
                       className="w-full h-full object-cover"
                       onError={() => {

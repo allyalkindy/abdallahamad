@@ -24,7 +24,7 @@ function Doctors() {
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/doctors', {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/doctors`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

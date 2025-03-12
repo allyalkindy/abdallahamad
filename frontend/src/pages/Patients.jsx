@@ -26,11 +26,12 @@ function Patients() {
   const fetchDoctorName = async (doctorId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/doctor/${doctorId}`, {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/doctor/${doctorId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
+      
       return response.data.fullName;
     } catch (err) {
       console.error('Error fetching doctor:', err);
@@ -48,7 +49,7 @@ function Patients() {
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/patients', {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/patients`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -105,7 +106,7 @@ function Patients() {
     if (window.confirm('Are you sure you want to delete this patient?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/patient/${patientId}`, {
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/patient/${patientId}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setPatients(patients.filter(patient => patient._id !== patientId));

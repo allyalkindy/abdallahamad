@@ -35,12 +35,14 @@ function UpdatePatient({ isOpen, onClose, onSuccess, patient }) {
   const fetchDoctors = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/doctors', {
+      
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/doctors`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setDoctors(response.data.data);
     } catch (err) {
       console.error('Error fetching doctors:', err);
+      console.log(import.meta.env.BACKEND_URL)
     }
   };
 
@@ -48,7 +50,7 @@ function UpdatePatient({ isOpen, onClose, onSuccess, patient }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/patient/${patient._id}`, formData, {
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/patient/${patient._id}`, formData, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       onSuccess();

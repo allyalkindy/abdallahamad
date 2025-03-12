@@ -2,7 +2,7 @@
    import React from 'react';
    import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
    import Login from './pages/Login';
-   import SignUp from './pages/SignUp';
+   import Signup from './pages/Signup';
    import Homepage from './pages/Homepage';
    import Patients from './pages/Patients';
    import Treatments from './pages/Treatments';
@@ -56,7 +56,7 @@
                  path="/signup" 
                  element={
                    <AuthRoute>
-                     <SignUp />
+                     <Signup />
                    </AuthRoute>
                  } 
                />
